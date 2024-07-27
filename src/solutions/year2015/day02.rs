@@ -8,11 +8,11 @@ fn parse_dimensions(s: &str) -> Vec<usize> {
 }
 
 fn calculate_paper(vals: &Vec<usize>) -> usize {
-    (3 * vals[0] * vals[1]) + (2 * vals[1] * vals[2]) + (2 * vals[2] * vals[0])
+    (3 * vals[0] * vals[1]) + (2 * ((vals[1] * vals[2]) + (vals[2] * vals[0])))
 }
 
 fn calculate_ribbon(vals: &Vec<usize>) -> usize {
-    (2 * vals[0]) + (2 * vals[1]) + (vals[0] * vals[1] * vals[2])
+    (2 * (vals[0] + vals[1])) + (vals[0] * vals[1] * vals[2])
 }
 
 pub fn solution_2015_02_01(filepath: String) -> Option<usize> {
