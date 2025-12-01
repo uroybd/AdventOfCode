@@ -25,6 +25,7 @@ fn get_dial_position(current_pos: i32, offset: i32, dial_size: i32) -> (i32, i32
 }
 
 const DIAL_SIZE: i32 = 100;
+const STARTING_POSITION: i32 = 50;
 
 pub fn solution_2025_01_01(filepath: String) -> Option<i32> {
     let (_, zero_count) = std::fs::read_to_string(filepath)
@@ -32,15 +33,18 @@ pub fn solution_2025_01_01(filepath: String) -> Option<i32> {
         .trim_end()
         .lines()
         .map(parse_instruction)
-        .fold((50, 0), |(current_position, zero_count), ins| {
-            let (new_position, _) = get_dial_position(current_position, ins, DIAL_SIZE);
-            let zero_count = if new_position == 0 {
-                zero_count + 1
-            } else {
-                zero_count
-            };
-            (new_position, zero_count)
-        });
+        .fold(
+            (STARTING_POSITION, 0),
+            |(current_position, zero_count), ins| {
+                let (new_position, _) = get_dial_position(current_position, ins, DIAL_SIZE);
+                let zero_count = if new_position == 0 {
+                    zero_count + 1
+                } else {
+                    zero_count
+                };
+                (new_position, zero_count)
+            },
+        );
     Some(zero_count)
 }
 
@@ -50,14 +54,17 @@ pub fn solution_2025_01_02(filepath: String) -> Option<i32> {
         .trim_end()
         .lines()
         .map(parse_instruction)
-        .fold((50, 0), |(current_position, zero_count), ins| {
-            let (new_position, rotations) = get_dial_position(current_position, ins, DIAL_SIZE);
-            let mut zero_count = zero_count + rotations;
-            if new_position == 0 && rotations == 0 {
-                zero_count += 1;
-            }
-            (new_position, zero_count)
-        });
+        .fold(
+            (STARTING_POSITION, 0),
+            |(current_position, zero_count), ins| {
+                let (new_position, rotations) = get_dial_position(current_position, ins, DIAL_SIZE);
+                let mut zero_count = zero_count + rotations;
+                if new_position == 0 && rotations == 0 {
+                    zero_count += 1;
+                }
+                (new_position, zero_count)
+            },
+        );
     Some(zero_count)
 }
 
