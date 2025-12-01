@@ -1,12 +1,9 @@
-use std::collections::HashMap;
-
 fn parse_line(line: &str) -> Vec<i32> {
-    return line
-        .split_whitespace()
+    line.split_whitespace()
         .map(|s| s.parse().unwrap())
         .collect::<Vec<i32>>()
         .try_into()
-        .unwrap();
+        .unwrap()
 }
 
 pub fn parse_input(filepath: String) -> Vec<Vec<i32>> {
@@ -23,14 +20,15 @@ pub fn parse_input(filepath: String) -> Vec<Vec<i32>> {
         });
     left.sort();
     right.sort();
-    return vec![left, right];
+    vec![left, right]
 }
 
 pub fn solution_2024_01_01(filepath: String) -> Option<i32> {
     let input = parse_input(filepath);
-    let result = input[0].iter().zip(input[1].iter()).fold(0, |acc, (l, r)| {
-        return acc + (l - r).abs();
-    });
+    let result = input[0]
+        .iter()
+        .zip(input[1].iter())
+        .fold(0, |acc, (l, r)| acc + (l - r).abs());
     Some(result)
 }
 
@@ -38,7 +36,7 @@ pub fn solution_2024_01_02(filepath: String) -> Option<i32> {
     let input = parse_input(filepath);
     let result = input[0].iter().fold(0, |acc, key| {
         let count = input[1].iter().filter(|&v| v == key).count();
-        return acc + (count as i32 * key);
+        acc + (count as i32 * key)
     });
     Some(result)
 }
