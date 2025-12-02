@@ -1,34 +1,77 @@
-struct Coordinate(isize, isize);
+fn is_nice_naive(s: &str) -> bool {
+    let vowels = "aeiou";
+    let forbidden = ["ab", "cd", "pq", "xy"];
 
-impl Coordinate {
-    fn from_string(s: &str) -> Self {
-        let mut parts = s.split(',');
-        let x = parts.next().unwrap().parse::<isize>().unwrap();
-        let y = parts.next().unwrap().parse::<isize>().unwrap();
-        Self(x, y)
-    }
+    let vowel_count = s.chars().filter(|c| vowels.contains(*c)).count();
+    let has_double = s.chars().zip(s.chars().skip(1)).any(|(a, b)| a == b);
+    let has_forbidden = forbidden.iter().any(|f| s.contains(f));
+
+    vowel_count >= 3 && has_double && !has_forbidden
 }
 
-struct Range(Coordinate, Coordinate);
+fn is_nice_advanced(s: &str) -> bool {
+    let has_repeated_pair = (0..s.len() - 1).any(|i| {
+        let pair = &s[i..i + 2];
+        s[i + 2..].contains(pair)
+    });
 
-impl Range {
-    fn from_string(s: &str) -> Self {
-        let mut parts = s.split(" through ");
-        let start = Coordinate::from_string(parts.next().unwrap());
-        let end = Coordinate::from_string(parts.next().unwrap());
-        Self(start, end)
+    let has_sandwiched_letter = (0..s.len() - 2).any(|i| s.chars().nth(i) == s.chars().nth(i + 2));
+
+    has_repeated_pair && has_sandwiched_letter
+}
+
+pub fn solution_2015_05_01(filepath: String) -> Result<usize, Box<dyn std::error::Error>> {
+    let content = std::fs::read_to_string(filepath).expect("Invalid file.");
+    let nice_count = content.lines().filter(|line| is_nice_naive(line)).count();
+    Ok(nice_count)
+}
+
+pub fn solution_2015_05_02(filepath: String) -> Result<usize, Box<dyn std::error::Error>> {
+    let content = std::fs::read_to_string(filepath).expect("Invalid file.");
+    let nice_count = content
+        .lines()
+        .filter(|line| is_nice_advanced(line))
+        .count();
+    Ok(nice_count)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_solution_2015_05_01_example() {
+        let file_path = String::from("inputs/2015/day05e.txt");
+        let result = solution_2015_05_01(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert_eq!(result, 2);
     }
-    fn iterate(&self) -> impl Iterator<Item = Coordinate> {
-        let x_range = if self.0 .0 <= self.1 .0 {
-            self.0 .0..=self.1 .0
-        } else {
-            self.1 .0..=self.0 .0
-        };
-        let y_range = if self.0 .1 <= self.1 .1 {
-            self.0 .1..=self.1 .1
-        } else {
-            self.1 .1..=self.0 .1
-        };
-        x_range.flat_map(move |x| y_range.clone().map(move |y| Coordinate(x, y)))
+
+    #[test]
+    fn test_solution_2015_05_01() {
+        let file_path = String::from("inputs/2015/day05.txt");
+        let result = solution_2015_05_01(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert_eq!(result, 255);
+    }
+
+    #[test]
+    fn test_solution_2015_05n02_example() {
+        let file_path = String::from("inputs/2015/day05e2.txt");
+        let result = solution_2015_05_02(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert_eq!(result, 2);
+    }
+
+    #[test]
+    fn test_solution_2015_05_02() {
+        let file_path = String::from("inputs/2015/day05.txt");
+        let result = solution_2015_05_02(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert_eq!(result, 55);
     }
 }
