@@ -22,9 +22,8 @@ fn get_dial_position(current_pos: i32, offset: i32, dial_size: i32) -> (i32, i32
 const DIAL_SIZE: i32 = 100;
 const STARTING_POSITION: i32 = 50;
 
-pub fn solution_2025_01_01(filepath: String) -> Option<i32> {
-    let (_, zero_count) = std::fs::read_to_string(filepath)
-        .expect("Invalid file")
+pub fn solution_2025_01_01(filepath: String) -> Result<i32, Box<dyn std::error::Error>> {
+    let (_, zero_count) = std::fs::read_to_string(filepath)?
         .trim_end()
         .lines()
         .map(parse_instruction)
@@ -39,12 +38,11 @@ pub fn solution_2025_01_01(filepath: String) -> Option<i32> {
                 (new_position, zero_count)
             },
         );
-    Some(zero_count)
+    Ok(zero_count)
 }
 
-pub fn solution_2025_01_02(filepath: String) -> Option<i32> {
-    let (_, zero_count) = std::fs::read_to_string(filepath)
-        .expect("Invalid file")
+pub fn solution_2025_01_02(filepath: String) -> Result<i32, Box<dyn std::error::Error>> {
+    let (_, zero_count) = std::fs::read_to_string(filepath)?
         .trim_end()
         .lines()
         .map(parse_instruction)
@@ -59,7 +57,7 @@ pub fn solution_2025_01_02(filepath: String) -> Option<i32> {
                 (new_position, zero_count)
             },
         );
-    Some(zero_count)
+    Ok(zero_count)
 }
 
 #[cfg(test)]
@@ -68,14 +66,18 @@ mod tests {
     #[test]
     fn test_2025_01_01_example() {
         let file_path = String::from("inputs/2025/day01e.txt");
-        let result = solution_2025_01_01(file_path).unwrap();
+        let result = solution_2025_01_01(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
         assert_eq!(result, 3);
     }
 
     #[test]
     fn test_2025_01_01() {
         let file_path = String::from("inputs/2025/day01.txt");
-        let result = solution_2025_01_01(file_path).unwrap();
+        let result = solution_2025_01_01(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
         println!("Result: {}", result);
         assert_eq!(result, 1168);
     }
@@ -83,14 +85,18 @@ mod tests {
     #[test]
     fn test_2025_01_02_example() {
         let file_path = String::from("inputs/2025/day01e.txt");
-        let result = solution_2025_01_02(file_path).unwrap();
+        let result = solution_2025_01_02(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
         assert_eq!(result, 6);
     }
 
     #[test]
     fn test_2025_01_02() {
         let file_path = String::from("inputs/2025/day01.txt");
-        let result = solution_2025_01_02(file_path).unwrap();
+        let result = solution_2025_01_02(file_path);
+        assert!(result.is_ok());
+        let result = result.unwrap();
         println!("Result: {}", result);
         assert_eq!(result, 7199);
     }
