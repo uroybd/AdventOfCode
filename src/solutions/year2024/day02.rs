@@ -35,7 +35,7 @@ fn is_safe(report: &Vec<i32>) -> bool {
             _ => unreachable!(),
         }
     }
-    return true;
+    true
 }
 
 fn is_safe_with_dampner(report: &Vec<i32>) -> bool {
@@ -49,17 +49,17 @@ fn is_safe_with_dampner(report: &Vec<i32>) -> bool {
             return true;
         }
     }
-    return false;
+    false
 }
 
 pub fn solution_2024_02_01(filepath: String) -> Option<i32> {
     let input = parse_input(&filepath);
-    return Some(input.into_iter().filter(is_safe).count() as i32);
+    Some(input.into_iter().filter(is_safe).count() as i32)
 }
 
 pub fn solution_2024_02_02(filepath: String) -> Option<i32> {
     let input = parse_input(&filepath);
-    return Some(input.into_iter().filter(is_safe_with_dampner).count() as i32);
+    Some(input.into_iter().filter(is_safe_with_dampner).count() as i32)
 }
 
 #[cfg(test)]

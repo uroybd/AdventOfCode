@@ -6,7 +6,7 @@ pub fn solution_2024_03_01(filepath: String) -> Option<i32> {
         .captures_iter(&std::fs::read_to_string(filepath).unwrap())
         .fold(0, |acc, captures| {
             let (_, [num1, num2]) = captures.extract();
-            return acc + (num1.parse::<i32>().unwrap() * num2.parse::<i32>().unwrap());
+            acc + (num1.parse::<i32>().unwrap() * num2.parse::<i32>().unwrap())
         });
     Some(result)
 }
@@ -29,7 +29,7 @@ pub fn solution_2024_03_02(filepath: String) -> Option<i32> {
                     }
                 }
             }
-            return acc;
+            acc
         });
     Some(result)
 }

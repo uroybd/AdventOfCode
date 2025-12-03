@@ -29,7 +29,7 @@ pub fn solution_2015_01_02(filepath: String) -> Option<usize> {
             return Some(i + 1);
         }
     }
-    return None;
+    None
 }
 
 #[cfg(test)]

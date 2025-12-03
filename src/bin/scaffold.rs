@@ -6,16 +6,17 @@ use std::{
     io::Write,
     process,
 };
+use AOC::solutions::year2015::day01;
 
 const MODULE_TEMPLATE: &str = r###"// Advent of Code {{ year }} - Day {{ day }}
 
 
-pub fn solution_day_{{ day }}_01(file_path: String) -> anyhow::Result<usize> {
-    None
+pub fn solution_{{ year }}_{{ day }}_01(file_path: String) -> anyhow::Result<usize> {
+    anyhow::bail!("Yet to be implemented")
 }
 
-pub fn solution_day_{{ day }}_02(file_path: String) -> anyhow::Result<usize> {
-    None
+pub fn solution_{{ year }}_{{ day }}_02(file_path: String) -> anyhow::Result<usize> {
+    anyhow::bail!("Yet to be implemented")
 }
 
 
@@ -24,33 +25,33 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_{{ day }}_01() {
+    fn test_{{ year}}_{{ day }}_01() {
         let file_path: String = String::from("inputs/{{ year }}/day{{ day }}e.txt");
-        let result = solution_day_{{ day }}_01(file_path).unwrap();
+        let result = solution_{{ year }}_{{ day }}_01(file_path).unwrap();
         assert_eq!(result, 15);
     }
 
     #[test]
-    fn test_day_{{ day }}_02() {
+    fn test_{{ year}}_{{ day }}_02() {
         let file_path: String = String::from("inputs/{{ year }}/day{{ day }}e.txt");
-        let result = solution_day_{{ day }}_02(file_path).unwrap();
+        let result = solution_{{ year }}_{{ day }}_02(file_path).unwrap();
         assert_eq!(result, 12);
     }
 
     #[test]
     #[ignore]
-    fn output_day_{{ day }}_01() {
+    fn output_{{ year}}_{{ day }}_01() {
         let file_path: String = String::from("inputs/{{ year }}/day{{ day }}.txt");
-        let result = solution_day_{{ day }}_01(file_path);
+        let result = solution_{{ year }}_{{ day }}_01(file_path);
         dbg!(result.unwrap());
         assert_eq!(1, 1);
     }
 
     #[test]
     #[ignore]
-    fn output_day_{{ day }}_02() {
+    fn output_{{ year}}_{{ day }}_02() {
         let file_path: String = String::from("inputs/{{ year }}/day{{ day }}.txt");
-        let result = solution_day_{{ day }}_02(file_path);
+        let result = solution_{{ year }}_{{ day }}_02(file_path);
         dbg!(result.unwrap());
         assert_eq!(1, 1);
     }
@@ -85,6 +86,21 @@ struct Cli {
     day: u16,
 }
 
+#[derive(Serialize)]
+struct TemplateContext {
+    year: u16,
+    day: String,
+}
+
+impl TemplateContext {
+    fn from_cli(cli: &Cli) -> Self {
+        TemplateContext {
+            year: cli.year,
+            day: format!("{:02}", cli.day),
+        }
+    }
+}
+
 fn safe_create_file(path: &str) -> Result<File, std::io::Error> {
     OpenOptions::new().write(true).create_new(true).open(path)
 }
@@ -96,7 +112,8 @@ fn create_file(path: &str) -> Result<File, std::io::Error> {
 fn main() {
     let cli = Cli::parse();
 
-    let day_padded = format!("{:02}", cli.day);
+    let templateContext = TemplateContext::from_cli(&cli);
+    let day_padded = templateContext.day.clone();
 
     let input_path = format!("inputs/{}/day{}.txt", cli.year, day_padded);
     let example_path = format!("inputs/{}/day{}e.txt", cli.year, day_padded);
@@ -110,9 +127,9 @@ fn main() {
         }
     };
 
-    let context = tera::Context::from_serialize(cli).expect("Invalid context");
+    let context = tera::Context::from_serialize(templateContext).expect("Invalid context");
     let content =
-        tera::Tera::one_off(&MODULE_TEMPLATE, &context, false).expect("Failed to compile template");
+        tera::Tera::one_off(MODULE_TEMPLATE, &context, false).expect("Failed to compile template");
 
     match file.write_all(content.as_bytes()) {
         Ok(_) => {

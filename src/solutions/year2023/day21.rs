@@ -1,10 +1,6 @@
 // Advent of Code 2023 - Day 21
-use std::{
-    backtrace,
-    collections::{HashSet, VecDeque},
-};
+use std::collections::HashSet;
 
-use nalgebra::{Matrix3, Matrix3x1};
 
 #[derive(Debug, Clone)]
 struct GardenMap {

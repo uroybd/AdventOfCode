@@ -8,11 +8,11 @@ struct Walker(isize, isize);
 
 impl Walker {
     fn new() -> Self {
-        return Self(0, 0);
+        Self(0, 0)
     }
 
     fn key(&self) -> String {
-        return gen_key(&(self.0, self.1));
+        gen_key(&(self.0, self.1))
     }
 
     fn walk(&mut self, dir: &char) -> String {
@@ -44,7 +44,7 @@ pub fn solution_2015_03_01(filepath: String) -> Option<usize> {
 
 pub fn solution_2015_03_02(filepath: String) -> Option<usize> {
     let mut visited = HashSet::new();
-    let mut santas = vec![Walker::new(), Walker::new()];
+    let mut santas = [Walker::new(), Walker::new()];
     visited.insert(santas[0].key());
 
     for (i, dir) in std::fs::read_to_string(filepath)
