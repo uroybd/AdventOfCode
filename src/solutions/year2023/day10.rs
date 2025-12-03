@@ -308,7 +308,7 @@ impl GroundMap {
     }
 }
 
-pub fn solution_day_10_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_10_01(file_path: String) -> Option<usize> {
     let ground_map = fs::read_to_string(file_path)
         .expect("Invalid File")
         .parse::<GroundMap>()
@@ -318,7 +318,7 @@ pub fn solution_day_10_01(file_path: String) -> Option<usize> {
     Some((val / 2) + (val % 2))
 }
 
-pub fn solution_day_10_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_10_02(file_path: String) -> Option<usize> {
     let ground_map = fs::read_to_string(file_path)
         .expect("Invalid File")
         .parse::<GroundMap>()
@@ -332,16 +332,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_10_01() {
+    fn test_2023_10_01() {
         let file_path: String = String::from("inputs/2023/day10e.txt");
-        let result = solution_day_10_01(file_path).unwrap();
+        let result = solution_2023_10_01(file_path).unwrap();
         assert_eq!(result, 8);
     }
 
     #[test]
-    fn test_day_10_02() {
+    fn test_2023_10_02() {
         let file_path: String = String::from("inputs/2023/day10e2.txt");
-        let result = solution_day_10_02(file_path).unwrap();
+        let result = solution_2023_10_02(file_path).unwrap();
         assert_eq!(result, 10);
     }
 
@@ -349,7 +349,7 @@ mod tests {
     #[ignore]
     fn output_day_10_01() {
         let file_path: String = String::from("inputs/2023/day10.txt");
-        let result = solution_day_10_01(file_path).unwrap();
+        let result = solution_2023_10_01(file_path).unwrap();
         assert_eq!(result, 6860);
     }
 
@@ -357,7 +357,7 @@ mod tests {
     #[ignore]
     fn output_day_10_02() {
         let file_path: String = String::from("inputs/2023/day10.txt");
-        let result = solution_day_10_02(file_path).unwrap();
+        let result = solution_2023_10_02(file_path).unwrap();
         assert_eq!(result, 343);
     }
 }

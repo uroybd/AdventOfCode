@@ -224,7 +224,7 @@ impl Circuit {
     }
 }
 
-pub fn solution_day_20_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_20_01(file_path: String) -> Option<usize> {
     let mut circuit = fs::read_to_string(file_path)
         .expect("Invalid input file.")
         .parse::<Circuit>()
@@ -234,7 +234,7 @@ pub fn solution_day_20_01(file_path: String) -> Option<usize> {
     // Some((0..1000).fold(0, |acc, _| acc + circuit.run()))
 }
 
-pub fn solution_day_20_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_20_02(file_path: String) -> Option<usize> {
     let mut circuit = fs::read_to_string(file_path)
         .expect("Invalid input file.")
         .parse::<Circuit>()
@@ -248,16 +248,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_20_01() {
+    fn test_2023_20_01() {
         let file_path: String = String::from("inputs/2023/day20e.txt");
-        let result = solution_day_20_01(file_path).unwrap();
+        let result = solution_2023_20_01(file_path).unwrap();
         assert_eq!(result, 32000000);
     }
 
     #[test]
-    fn test_day_20_02() {
+    fn test_2023_20_02() {
         // let file_path: String = String::from("inputs/2023/day20e.txt");
-        // let result = solution_day_20_02(file_path).unwrap();
+        // let result = solution_2023_20_02(file_path).unwrap();
         // dbg!(result);
         assert_eq!(1, 1);
     }
@@ -266,7 +266,7 @@ mod tests {
     #[ignore]
     fn output_day_20_01() {
         let file_path: String = String::from("inputs/2023/day20.txt");
-        let result = solution_day_20_01(file_path).unwrap();
+        let result = solution_2023_20_01(file_path).unwrap();
         assert_eq!(result, 743090292);
     }
 
@@ -274,7 +274,7 @@ mod tests {
     #[ignore]
     fn output_day_20_02() {
         let file_path: String = String::from("inputs/2023/day20.txt");
-        let result = solution_day_20_02(file_path).unwrap();
+        let result = solution_2023_20_02(file_path).unwrap();
         assert_eq!(result, 241528184647003);
     }
 }

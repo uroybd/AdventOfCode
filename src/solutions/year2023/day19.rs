@@ -289,7 +289,7 @@ impl WorkflowManager {
     }
 }
 
-pub fn solution_day_19_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_19_01(file_path: String) -> Option<usize> {
     let manager = fs::read_to_string(file_path)
         .expect("Invalid Input File.")
         .parse::<WorkflowManager>()
@@ -297,7 +297,7 @@ pub fn solution_day_19_01(file_path: String) -> Option<usize> {
     Some(manager.get_total_accepted_value())
 }
 
-pub fn solution_day_19_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_19_02(file_path: String) -> Option<usize> {
     let manager = fs::read_to_string(file_path)
         .expect("Invalid Input File.")
         .parse::<WorkflowManager>()
@@ -310,16 +310,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_19_01() {
+    fn test_2023_19_01() {
         let file_path: String = String::from("inputs/2023/day19e.txt");
-        let result = solution_day_19_01(file_path).unwrap();
+        let result = solution_2023_19_01(file_path).unwrap();
         assert_eq!(result, 19114);
     }
 
     #[test]
-    fn test_day_19_02() {
+    fn test_2023_19_02() {
         let file_path: String = String::from("inputs/2023/day19e.txt");
-        let result = solution_day_19_02(file_path).unwrap();
+        let result = solution_2023_19_02(file_path).unwrap();
         assert_eq!(result, 167409079868000);
     }
 
@@ -327,7 +327,7 @@ mod tests {
     #[ignore]
     fn output_day_19_01() {
         let file_path: String = String::from("inputs/2023/day19.txt");
-        let result = solution_day_19_01(file_path).unwrap();
+        let result = solution_2023_19_01(file_path).unwrap();
         assert_eq!(result, 342650);
     }
 
@@ -335,7 +335,7 @@ mod tests {
     #[ignore]
     fn output_day_19_02() {
         let file_path: String = String::from("inputs/2023/day19.txt");
-        let result = solution_day_19_02(file_path).unwrap();
+        let result = solution_2023_19_02(file_path).unwrap();
         assert_eq!(result, 130303473508222);
     }
 }

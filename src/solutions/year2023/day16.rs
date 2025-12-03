@@ -141,7 +141,7 @@ impl MirrorRoom {
     }
 }
 
-pub fn solution_day_16_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_16_01(file_path: String) -> Option<usize> {
     let mirror_room: MirrorRoom = fs::read_to_string(file_path).unwrap().parse().unwrap();
     Some(mirror_room.find_photons(&Photon {
         position: (-1, 0),
@@ -149,7 +149,7 @@ pub fn solution_day_16_01(file_path: String) -> Option<usize> {
     }))
 }
 
-pub fn solution_day_16_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_16_02(file_path: String) -> Option<usize> {
     let mirror_room: MirrorRoom = fs::read_to_string(file_path).unwrap().parse().unwrap();
 
     let (sender, receiver) = channel();
@@ -197,16 +197,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_16_01() {
+    fn test_2023_16_01() {
         let file_path: String = String::from("inputs/2023/day16e.txt");
-        let result = solution_day_16_01(file_path).unwrap();
+        let result = solution_2023_16_01(file_path).unwrap();
         assert_eq!(result, 46);
     }
 
     #[test]
-    fn test_day_16_02() {
+    fn test_2023_16_02() {
         let file_path: String = String::from("inputs/2023/day16e.txt");
-        let result = solution_day_16_02(file_path).unwrap();
+        let result = solution_2023_16_02(file_path).unwrap();
         assert_eq!(result, 51);
     }
 
@@ -214,7 +214,7 @@ mod tests {
     #[ignore]
     fn output_day_16_01() {
         let file_path: String = String::from("inputs/2023/day16.txt");
-        let result = solution_day_16_01(file_path).unwrap();
+        let result = solution_2023_16_01(file_path).unwrap();
         assert_eq!(result, 8098);
     }
 
@@ -222,7 +222,7 @@ mod tests {
     #[ignore]
     fn output_day_16_02() {
         let file_path: String = String::from("inputs/2023/day16.txt");
-        let result = solution_day_16_02(file_path).unwrap();
+        let result = solution_2023_16_02(file_path).unwrap();
         assert_eq!(result, 8335);
     }
 }

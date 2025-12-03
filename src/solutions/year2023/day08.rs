@@ -107,7 +107,7 @@ impl Map {
     }
 }
 
-pub fn solution_day_08_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_08_01(file_path: String) -> Option<usize> {
     let map: Map = fs::read_to_string(file_path)
         .expect("Invalid input.")
         .parse()
@@ -115,7 +115,7 @@ pub fn solution_day_08_01(file_path: String) -> Option<usize> {
     Some(map.traverse())
 }
 
-pub fn solution_day_08_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_08_02(file_path: String) -> Option<usize> {
     let map: Map = fs::read_to_string(file_path)
         .expect("Invalid input.")
         .parse()
@@ -128,16 +128,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_08_01() {
+    fn test_2023_08_01() {
         let file_path: String = String::from("inputs/2023/day08e.txt");
-        let result = solution_day_08_01(file_path).unwrap();
+        let result = solution_2023_08_01(file_path).unwrap();
         assert_eq!(result, 2);
     }
 
     #[test]
-    fn test_day_08_02() {
+    fn test_2023_08_02() {
         let file_path: String = String::from("inputs/2023/day08e2.txt");
-        let result = solution_day_08_02(file_path).unwrap();
+        let result = solution_2023_08_02(file_path).unwrap();
         assert_eq!(result, 6);
     }
 
@@ -145,7 +145,7 @@ mod tests {
     #[ignore]
     fn output_day_08_01() {
         let file_path: String = String::from("inputs/2023/day08.txt");
-        let result = solution_day_08_01(file_path).unwrap();
+        let result = solution_2023_08_01(file_path).unwrap();
         assert_eq!(result, 14681);
     }
 
@@ -153,7 +153,7 @@ mod tests {
     #[ignore]
     fn output_day_08_02() {
         let file_path: String = String::from("inputs/2023/day08.txt");
-        let result = solution_day_08_02(file_path).unwrap();
+        let result = solution_2023_08_02(file_path).unwrap();
         assert_eq!(result, 14321394058031);
     }
 }

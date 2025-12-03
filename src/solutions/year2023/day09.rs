@@ -37,12 +37,12 @@ fn report(data: &[Vec<isize>], accumulator: fn(isize, &Vec<isize>) -> isize) -> 
         .sum()
 }
 
-pub fn solution_day_09_01(file_path: String) -> Option<isize> {
+pub fn solution_2023_09_01(file_path: String) -> Option<isize> {
     let val = parse(&fs::read_to_string(file_path).expect("Invalid Input File."));
     Some(report(&val, |acc, v| v.last().unwrap() + acc))
 }
 
-pub fn solution_day_09_02(file_path: String) -> Option<isize> {
+pub fn solution_2023_09_02(file_path: String) -> Option<isize> {
     let val = parse(&fs::read_to_string(file_path).expect("Invalid Input File."));
     Some(report(&val, |acc, v| v.first().unwrap() - acc))
 }
@@ -52,16 +52,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_09_01() {
+    fn test_2023_09_01() {
         let file_path: String = String::from("inputs/2023/day09e.txt");
-        let result = solution_day_09_01(file_path).unwrap();
+        let result = solution_2023_09_01(file_path).unwrap();
         assert_eq!(result, 114);
     }
 
     #[test]
-    fn test_day_09_02() {
+    fn test_2023_09_02() {
         let file_path: String = String::from("inputs/2023/day09e.txt");
-        let result = solution_day_09_02(file_path).unwrap();
+        let result = solution_2023_09_02(file_path).unwrap();
         assert_eq!(result, 2);
     }
 
@@ -69,7 +69,7 @@ mod tests {
     #[ignore]
     fn output_day_09_01() {
         let file_path: String = String::from("inputs/2023/day09.txt");
-        let result = solution_day_09_01(file_path).unwrap();
+        let result = solution_2023_09_01(file_path).unwrap();
         assert_eq!(result, 1666172641);
     }
 
@@ -77,7 +77,7 @@ mod tests {
     #[ignore]
     fn output_day_09_02() {
         let file_path: String = String::from("inputs/2023/day09.txt");
-        let result = solution_day_09_02(file_path).unwrap();
+        let result = solution_2023_09_02(file_path).unwrap();
         assert_eq!(result, 933);
     }
 }

@@ -60,7 +60,7 @@ fn shoelace_area(
     }
     perimeter.wrapping_add_signed(sum) / 2 + 1
 }
-pub fn solution_day_18_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_18_01(file_path: String) -> Option<usize> {
     let plan: Vec<Instruction> = fs::read_to_string(file_path)
         .expect("Invalid Input File.")
         .lines()
@@ -69,7 +69,7 @@ pub fn solution_day_18_01(file_path: String) -> Option<usize> {
     Some(shoelace_area(&plan, |i| (i.dir, i.len)))
 }
 
-pub fn solution_day_18_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_18_02(file_path: String) -> Option<usize> {
     let plan: Vec<Instruction> = fs::read_to_string(file_path)
         .expect("Invalid Input File.")
         .lines()
@@ -83,16 +83,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_18_01() {
+    fn test_2023_18_01() {
         let file_path: String = String::from("inputs/2023/day18e.txt");
-        let result = solution_day_18_01(file_path).unwrap();
+        let result = solution_2023_18_01(file_path).unwrap();
         assert_eq!(result, 62);
     }
 
     #[test]
-    fn test_day_18_02() {
+    fn test_2023_18_02() {
         let file_path: String = String::from("inputs/2023/day18e.txt");
-        let result = solution_day_18_02(file_path).unwrap();
+        let result = solution_2023_18_02(file_path).unwrap();
         assert_eq!(result, 952408144115);
     }
 
@@ -100,7 +100,7 @@ mod tests {
     #[ignore]
     fn output_day_18_01() {
         let file_path: String = String::from("inputs/2023/day18.txt");
-        let result = solution_day_18_01(file_path).unwrap();
+        let result = solution_2023_18_01(file_path).unwrap();
         assert_eq!(result, 36807);
     }
 
@@ -108,7 +108,7 @@ mod tests {
     #[ignore]
     fn output_day_18_02() {
         let file_path: String = String::from("inputs/2023/day18.txt");
-        let result = solution_day_18_02(file_path).unwrap();
+        let result = solution_2023_18_02(file_path).unwrap();
         assert_eq!(result, 48797603984357);
     }
 }

@@ -41,7 +41,7 @@ fn parse_combined(data: &str) -> (f64, f64) {
     (parts.next().unwrap(), parts.next().unwrap())
 }
 
-pub fn solution_day_06_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_06_01(file_path: String) -> Option<usize> {
     Some(
         parse(&fs::read_to_string(file_path).expect("Invalid Input."))
             .iter()
@@ -49,7 +49,7 @@ pub fn solution_day_06_01(file_path: String) -> Option<usize> {
     )
 }
 
-pub fn solution_day_06_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_06_02(file_path: String) -> Option<usize> {
     Some(winning_count(&parse_combined(
         &fs::read_to_string(file_path).expect("Invalid Input."),
     )))
@@ -60,16 +60,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_06_01() {
+    fn test_2023_06_01() {
         let file_path: String = String::from("inputs/2023/day06e.txt");
-        let result = solution_day_06_01(file_path).unwrap();
+        let result = solution_2023_06_01(file_path).unwrap();
         assert_eq!(result, 288);
     }
 
     #[test]
-    fn test_day_06_02() {
+    fn test_2023_06_02() {
         let file_path: String = String::from("inputs/2023/day06e.txt");
-        let result = solution_day_06_02(file_path).unwrap();
+        let result = solution_2023_06_02(file_path).unwrap();
         assert_eq!(result, 71503);
     }
 
@@ -77,7 +77,7 @@ mod tests {
     #[ignore]
     fn output_day_06_01() {
         let file_path: String = String::from("inputs/2023/day06.txt");
-        let result = solution_day_06_01(file_path).unwrap();
+        let result = solution_2023_06_01(file_path).unwrap();
         assert_eq!(result, 1312850);
     }
 
@@ -85,7 +85,7 @@ mod tests {
     #[ignore]
     fn output_day_06_02() {
         let file_path: String = String::from("inputs/2023/day06.txt");
-        let result = solution_day_06_02(file_path).unwrap();
+        let result = solution_2023_06_02(file_path).unwrap();
         assert_eq!(result, 36749103);
     }
 }

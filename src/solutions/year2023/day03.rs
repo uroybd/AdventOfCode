@@ -113,7 +113,7 @@ impl Schema {
     }
 }
 
-pub fn solution_day_03_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_03_01(file_path: String) -> Option<usize> {
     let schema: Schema = fs::read_to_string(file_path)
         .expect("Invalid File.")
         .parse()
@@ -122,7 +122,7 @@ pub fn solution_day_03_01(file_path: String) -> Option<usize> {
     Some(res)
 }
 
-pub fn solution_day_03_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_03_02(file_path: String) -> Option<usize> {
     let schema: Schema = fs::read_to_string(file_path)
         .expect("Invalid File.")
         .parse()
@@ -140,16 +140,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_03_01() {
+    fn test_2023_03_01() {
         let file_path: String = String::from("inputs/2023/day03e.txt");
-        let result = solution_day_03_01(file_path).unwrap();
+        let result = solution_2023_03_01(file_path).unwrap();
         assert_eq!(result, 4361);
     }
 
     #[test]
-    fn test_day_03_02() {
+    fn test_2023_03_02() {
         let file_path: String = String::from("inputs/2023/day03e.txt");
-        let result = solution_day_03_02(file_path).unwrap();
+        let result = solution_2023_03_02(file_path).unwrap();
         assert_eq!(result, 467835);
     }
 
@@ -157,7 +157,7 @@ mod tests {
     #[ignore]
     fn output_day_03_01() {
         let file_path: String = String::from("inputs/2023/day03.txt");
-        let result = solution_day_03_01(file_path).unwrap();
+        let result = solution_2023_03_01(file_path).unwrap();
         assert_eq!(result, 532331);
     }
 
@@ -165,7 +165,7 @@ mod tests {
     #[ignore]
     fn output_day_03_02() {
         let file_path: String = String::from("inputs/2023/day03.txt");
-        let result = solution_day_03_02(file_path).unwrap();
+        let result = solution_2023_03_02(file_path).unwrap();
         assert_eq!(result, 82301120);
     }
 }

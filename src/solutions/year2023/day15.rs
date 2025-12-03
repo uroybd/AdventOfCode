@@ -87,7 +87,7 @@ impl std::str::FromStr for BoxArray {
     }
 }
 
-pub fn solution_day_15_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_15_01(file_path: String) -> Option<usize> {
     let res = fs::read_to_string(file_path)
         .expect("Invalid Input File.")
         .lines()
@@ -96,7 +96,7 @@ pub fn solution_day_15_01(file_path: String) -> Option<usize> {
     Some(res)
 }
 
-pub fn solution_day_15_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_15_02(file_path: String) -> Option<usize> {
     let boxes: BoxArray = fs::read_to_string(file_path)
         .expect("Invalid Input File.")
         .parse()
@@ -110,16 +110,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_15_01() {
+    fn test_2023_15_01() {
         let file_path: String = String::from("inputs/2023/day15e.txt");
-        let result = solution_day_15_01(file_path).unwrap();
+        let result = solution_2023_15_01(file_path).unwrap();
         assert_eq!(result, 1320);
     }
 
     #[test]
-    fn test_day_15_02() {
+    fn test_2023_15_02() {
         let file_path: String = String::from("inputs/2023/day15e.txt");
-        let result = solution_day_15_02(file_path).unwrap();
+        let result = solution_2023_15_02(file_path).unwrap();
         assert_eq!(result, 145);
     }
 
@@ -127,7 +127,7 @@ mod tests {
     #[ignore]
     fn output_day_15_01() {
         let file_path: String = String::from("inputs/2023/day15.txt");
-        let result = solution_day_15_01(file_path).unwrap();
+        let result = solution_2023_15_01(file_path).unwrap();
         assert_eq!(result, 510388);
     }
 
@@ -135,7 +135,7 @@ mod tests {
     #[ignore]
     fn output_day_15_02() {
         let file_path: String = String::from("inputs/2023/day15.txt");
-        let result = solution_day_15_02(file_path).unwrap();
+        let result = solution_2023_15_02(file_path).unwrap();
         assert_eq!(result, 291774);
     }
 }

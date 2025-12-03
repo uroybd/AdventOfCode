@@ -167,7 +167,7 @@ impl Almanac {
     }
 }
 
-pub fn solution_day_05_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_05_01(file_path: String) -> Option<usize> {
     let almanac: Almanac = fs::read_to_string(file_path)
         .expect("Invalid Input file.")
         .parse()
@@ -181,7 +181,7 @@ pub fn solution_day_05_01(file_path: String) -> Option<usize> {
     res
 }
 
-pub fn solution_day_05_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_05_02(file_path: String) -> Option<usize> {
     let almanac: Almanac = fs::read_to_string(file_path)
         .expect("Invalid Input file.")
         .parse()
@@ -211,16 +211,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_05_01() {
+    fn test_2023_05_01() {
         let file_path: String = String::from("inputs/2023/day05e.txt");
-        let result = solution_day_05_01(file_path).unwrap();
+        let result = solution_2023_05_01(file_path).unwrap();
         assert_eq!(result, 35);
     }
 
     #[test]
-    fn test_day_05_02() {
+    fn test_2023_05_02() {
         let file_path: String = String::from("inputs/2023/day05e.txt");
-        let result = solution_day_05_02(file_path).unwrap();
+        let result = solution_2023_05_02(file_path).unwrap();
         assert_eq!(result, 46);
     }
 
@@ -228,7 +228,7 @@ mod tests {
     #[ignore]
     fn output_day_05_01() {
         let file_path: String = String::from("inputs/2023/day05.txt");
-        let result = solution_day_05_01(file_path).unwrap();
+        let result = solution_2023_05_01(file_path).unwrap();
         assert_eq!(result, 240320250);
     }
 
@@ -236,7 +236,7 @@ mod tests {
     #[ignore]
     fn output_day_05_02() {
         let file_path: String = String::from("inputs/2023/day05.txt");
-        let result = solution_day_05_02(file_path).unwrap();
+        let result = solution_2023_05_02(file_path).unwrap();
         assert_eq!(result, 28580589);
     }
 }

@@ -70,7 +70,7 @@ fn find_combinations(inp: &str, report: &[usize], cache: &mut HashMap<String, us
     result
 }
 
-pub fn solution_day_12_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_12_01(file_path: String) -> Option<usize> {
     let mut cache = HashMap::new();
     let total = fs::read_to_string(file_path)
         .expect("Invalid File")
@@ -84,7 +84,7 @@ pub fn solution_day_12_01(file_path: String) -> Option<usize> {
     Some(total)
 }
 
-pub fn solution_day_12_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_12_02(file_path: String) -> Option<usize> {
     let mut cache = HashMap::new();
     let total = fs::read_to_string(file_path)
         .expect("Invalid File")
@@ -104,16 +104,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_12_01() {
+    fn test_2023_12_01() {
         let file_path: String = String::from("inputs/2023/day12e.txt");
-        let result = solution_day_12_01(file_path).unwrap();
+        let result = solution_2023_12_01(file_path).unwrap();
         assert_eq!(result, 21);
     }
 
     #[test]
-    fn test_day_12_02() {
+    fn test_2023_12_02() {
         let file_path: String = String::from("inputs/2023/day12e.txt");
-        let result = solution_day_12_02(file_path).unwrap();
+        let result = solution_2023_12_02(file_path).unwrap();
         assert_eq!(result, 525152);
     }
 
@@ -121,7 +121,7 @@ mod tests {
     #[ignore]
     fn output_day_12_01() {
         let file_path: String = String::from("inputs/2023/day12.txt");
-        let result = solution_day_12_01(file_path).unwrap();
+        let result = solution_2023_12_01(file_path).unwrap();
         assert_eq!(result, 7753);
     }
 
@@ -129,7 +129,7 @@ mod tests {
     #[ignore]
     fn output_day_12_02() {
         let file_path: String = String::from("inputs/2023/day12.txt");
-        let result = solution_day_12_02(file_path).unwrap();
+        let result = solution_2023_12_02(file_path).unwrap();
         assert_eq!(result, 280382734828319);
     }
 }

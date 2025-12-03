@@ -108,7 +108,7 @@ impl GardenMap {
     }
 }
 
-pub fn solution_day_21_01(file_path: String, moves: usize) -> Option<usize> {
+pub fn solution_2023_21_01(file_path: String, moves: usize) -> Option<usize> {
     let map = std::fs::read_to_string(file_path)
         .unwrap()
         .parse::<GardenMap>()
@@ -116,7 +116,7 @@ pub fn solution_day_21_01(file_path: String, moves: usize) -> Option<usize> {
     Some(map.possible_move_after_steps(moves).len())
 }
 
-pub fn solution_day_21_02(file_path: String, moves: usize) -> Option<usize> {
+pub fn solution_2023_21_02(file_path: String, moves: usize) -> Option<usize> {
     let map = std::fs::read_to_string(file_path)
         .unwrap()
         .parse::<GardenMap>()
@@ -129,16 +129,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_21_01() {
+    fn test_2023_21_01() {
         let file_path: String = String::from("inputs/2023/day21e.txt");
-        let result = solution_day_21_01(file_path, 6).unwrap();
+        let result = solution_2023_21_01(file_path, 6).unwrap();
         assert_eq!(result, 16);
     }
 
     #[test]
-    fn test_day_21_02() {
+    fn test_2023_21_02() {
         let file_path: String = String::from("inputs/2023/day21e.txt");
-        let result = solution_day_21_02(file_path, 26501365).unwrap();
+        let result = solution_2023_21_02(file_path, 26501365).unwrap();
         assert_eq!(result, 528192899606863);
     }
 
@@ -146,7 +146,7 @@ mod tests {
     #[ignore]
     fn output_day_21_01() {
         let file_path: String = String::from("inputs/2023/day21.txt");
-        let result = solution_day_21_01(file_path, 64).unwrap();
+        let result = solution_2023_21_01(file_path, 64).unwrap();
         assert_eq!(result, 3853);
     }
 
@@ -154,7 +154,7 @@ mod tests {
     #[ignore]
     fn output_day_21_02() {
         let file_path: String = String::from("inputs/2023/day21.txt");
-        let result = solution_day_21_02(file_path, 26501365).unwrap();
+        let result = solution_2023_21_02(file_path, 26501365).unwrap();
         assert_eq!(result, 639051580070841);
     }
 }

@@ -34,7 +34,7 @@ fn total_won(cards: &Vec<usize>) -> usize {
     count_cache.iter().sum()
 }
 
-pub fn solution_day_04_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_04_01(file_path: String) -> Option<usize> {
     Some(
         fs::read_to_string(file_path)
             .expect("Invalid File")
@@ -44,7 +44,7 @@ pub fn solution_day_04_01(file_path: String) -> Option<usize> {
     )
 }
 
-pub fn solution_day_04_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_04_02(file_path: String) -> Option<usize> {
     let cards: Vec<usize> = fs::read_to_string(file_path)
         .expect("Invalid File")
         .lines()
@@ -58,16 +58,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_04_01() {
+    fn test_2023_04_01() {
         let file_path: String = String::from("inputs/2023/day04e.txt");
-        let result = solution_day_04_01(file_path).unwrap();
+        let result = solution_2023_04_01(file_path).unwrap();
         assert_eq!(result, 13);
     }
 
     #[test]
-    fn test_day_04_02() {
+    fn test_2023_04_02() {
         let file_path: String = String::from("inputs/2023/day04e.txt");
-        let result = solution_day_04_02(file_path).unwrap();
+        let result = solution_2023_04_02(file_path).unwrap();
         assert_eq!(result, 30);
     }
 
@@ -75,7 +75,7 @@ mod tests {
     #[ignore]
     fn output_day_04_01() {
         let file_path: String = String::from("inputs/2023/day04.txt");
-        let result = solution_day_04_01(file_path).unwrap();
+        let result = solution_2023_04_01(file_path).unwrap();
         assert_eq!(result, 25651);
     }
 
@@ -83,7 +83,7 @@ mod tests {
     #[ignore]
     fn output_day_04_02() {
         let file_path: String = String::from("inputs/2023/day04.txt");
-        let result = solution_day_04_02(file_path).unwrap();
+        let result = solution_2023_04_02(file_path).unwrap();
         assert_eq!(result, 19499881);
     }
 }

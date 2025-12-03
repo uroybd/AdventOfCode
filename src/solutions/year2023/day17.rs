@@ -139,12 +139,12 @@ impl Graph {
     }
 }
 
-pub fn solution_day_17_01(file_path: String) -> Option<usize> {
+pub fn solution_2023_17_01(file_path: String) -> Option<usize> {
     let graph: Graph = std::fs::read_to_string(file_path).unwrap().parse().unwrap();
     Some(graph.find_shortest(1, 3))
 }
 
-pub fn solution_day_17_02(file_path: String) -> Option<usize> {
+pub fn solution_2023_17_02(file_path: String) -> Option<usize> {
     let graph: Graph = std::fs::read_to_string(file_path).unwrap().parse().unwrap();
     Some(graph.find_shortest(4, 10))
 }
@@ -154,19 +154,19 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_day_17_01() {
+    fn test_2023_17_01() {
         let file_path: String = String::from("inputs/2023/day17e.txt");
-        let result = solution_day_17_01(file_path).unwrap();
+        let result = solution_2023_17_01(file_path).unwrap();
         assert_eq!(result, 102);
     }
 
     #[test]
-    fn test_day_17_02() {
+    fn test_2023_17_02() {
         let file_path: String = String::from("inputs/2023/day17e.txt");
-        let result = solution_day_17_02(file_path).unwrap();
+        let result = solution_2023_17_02(file_path).unwrap();
         assert_eq!(result, 94);
         let file_path: String = String::from("inputs/2023/day17e2.txt");
-        let result = solution_day_17_02(file_path).unwrap();
+        let result = solution_2023_17_02(file_path).unwrap();
         assert_eq!(result, 71);
     }
 
@@ -174,7 +174,7 @@ mod tests {
     #[ignore]
     fn output_day_17_01() {
         let file_path: String = String::from("inputs/2023/day17.txt");
-        let result = solution_day_17_01(file_path).unwrap();
+        let result = solution_2023_17_01(file_path).unwrap();
         assert_eq!(result, 724);
     }
 
@@ -182,7 +182,7 @@ mod tests {
     #[ignore]
     fn output_day_17_02() {
         let file_path: String = String::from("inputs/2023/day17.txt");
-        let result = solution_day_17_02(file_path).unwrap();
+        let result = solution_2023_17_02(file_path).unwrap();
         assert_eq!(result, 877);
     }
 }
