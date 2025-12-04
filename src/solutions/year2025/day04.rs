@@ -37,7 +37,7 @@ impl Diagram {
         (0..self.height)
             .flat_map(|r| {
                 (0..self.width).filter_map(move |c| {
-                    if self.grid[r][c] && self.get_adjecent_count(r, c) < 4 {
+                    if self.grid[r][c] && self.has_neighbors_less_than(r, c, 4) {
                         return Some((r, c));
                     }
                     None
@@ -52,21 +52,21 @@ impl Diagram {
         }
         to_remove.len()
     }
-    fn get_adjecent_count(&self, row: usize, col: usize) -> usize {
-        DIRECTIONS
-            .into_iter()
-            .filter_map(|(r, c)| {
-                let (nr, nc) = (row.wrapping_add_signed(r), col.wrapping_add_signed(c));
-                if nr >= self.width || nc >= self.height {
-                    return None;
+    fn has_neighbors_less_than(&self, row: usize, col: usize, limit: usize) -> bool {
+        let mut count = 0;
+        for (dr, dc) in DIRECTIONS {
+            let (nr, nc) = (row.wrapping_add_signed(dr), col.wrapping_add_signed(dc));
+            if nr >= self.width || nc >= self.height {
+                continue;
+            }
+            if self.grid[nr][nc] {
+                count += 1;
+                if count >= limit {
+                    return false;
                 }
-                let val = self.grid[nr][nc];
-                if val {
-                    return Some(val);
-                }
-                None
-            })
-            .count()
+            }
+        }
+        count < limit
     }
 }
 
