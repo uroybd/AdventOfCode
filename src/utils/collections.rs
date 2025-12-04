@@ -50,6 +50,23 @@ impl<T> Faux2DArray<T> {
         }
     }
 
+    pub fn from_string_transformed<F>(inp: &str, transf: F) -> Option<Faux2DArray<T>>
+    where
+        F: Fn(char) -> T,
+    {
+        let mut lines = inp.lines();
+        if let Some(first_line) = lines.next() {
+            let width = first_line.len();
+            let items: Vec<T> = first_line
+                .chars()
+                .chain(lines.flat_map(|l| l.chars()))
+                .map(transf)
+                .collect();
+            return Some(Self { items, width });
+        }
+        None
+    }
+
     pub fn absolute_index(&self, x: usize, y: usize) -> usize {
         (y * self.width) + x
     }
@@ -227,6 +244,33 @@ impl<T> Faux2DArray<T> {
                 .rev()
                 .step_by(self.width),
         )
+    }
+    pub fn neighbors(&self, x: usize, y: usize, radius: usize) -> impl Iterator<Item = &T> + '_ {
+        let start_x = match x < radius {
+            true => 0,
+            false => x - radius,
+        };
+        let end_x = usize::min(x + radius, self.width - 1);
+        let start_y = match y >= radius {
+            true => y - radius,
+            false => 0,
+        };
+        let end_y = usize::min(y + radius, self.height() - 1);
+
+        (start_y..=end_y).flat_map(move |yy| {
+            (start_x..=end_x).filter_map(move |xx| {
+                if xx == x && yy == y {
+                    None
+                } else {
+                    let absolute_idx = self.absolute_index(xx, yy);
+                    if absolute_idx >= self.items.len() {
+                        None
+                    } else {
+                        Some(&self.items[self.absolute_index(xx, yy)])
+                    }
+                }
+            })
+        })
     }
 }
 
