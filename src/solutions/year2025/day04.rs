@@ -4,8 +4,8 @@ use std::fs;
 
 struct Diagram {
     grid: Vec<Vec<bool>>,
-    height: i32,
-    width: i32,
+    height: usize,
+    width: usize,
 }
 
 impl Diagram {
@@ -14,8 +14,8 @@ impl Diagram {
             .lines()
             .map(|line| line.chars().map(|c| c == '@').collect())
             .collect();
-        let height = grid.len() as i32;
-        let width = grid[0].len() as i32;
+        let height = grid.len();
+        let width = grid[0].len();
         Self {
             grid,
             height,
@@ -23,15 +23,16 @@ impl Diagram {
         }
     }
     fn removable(&self) -> Vec<(usize, usize)> {
-        let mut removable = vec![];
-        for r in 0..self.height as usize {
-            for c in 0..self.width as usize {
-                if self.grid[r][c] && self.get_adjecent_count(r, c) < 4 {
-                    removable.push((r, c))
-                }
-            }
-        }
-        removable
+        (0..self.height)
+            .flat_map(|r| {
+                (0..self.width).filter_map(move |c| {
+                    if self.grid[r][c] && self.get_adjecent_count(r, c) < 4 {
+                        return Some((r, c));
+                    }
+                    None
+                })
+            })
+            .collect()
     }
     fn remove_some(&mut self) -> usize {
         let to_remove = self.removable();
@@ -41,7 +42,7 @@ impl Diagram {
         to_remove.len()
     }
     fn get_adjecent_count(&self, row: usize, col: usize) -> usize {
-        let directions = [
+        let directions: [(isize, isize); 8] = [
             (-1, -1),
             (-1, 0),
             (-1, 1),
@@ -52,13 +53,13 @@ impl Diagram {
             (1, 1),
         ];
         directions
-            .iter()
+            .into_iter()
             .filter_map(|(r, c)| {
-                let (nr, nc) = (r + (row as i32), c + (col as i32));
-                if nr < 0 || nr >= self.width || nc < 0 || nc >= self.height {
+                let (nr, nc) = (row.wrapping_add_signed(r), col.wrapping_add_signed(c));
+                if nr >= self.width || nc >= self.height {
                     return None;
                 }
-                let val = self.grid[nr as usize][nc as usize];
+                let val = self.grid[nr][nc];
                 if val {
                     return Some(val);
                 }
