@@ -8,6 +8,17 @@ struct Diagram {
     width: usize,
 }
 
+const DIRECTIONS: [(isize, isize); 8] = [
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+    (0, -1),
+    (0, 1),
+    (1, -1),
+    (1, 0),
+    (1, 1),
+];
+
 impl Diagram {
     fn from_string(inp: &str) -> Self {
         let grid: Vec<Vec<bool>> = inp
@@ -42,17 +53,7 @@ impl Diagram {
         to_remove.len()
     }
     fn get_adjecent_count(&self, row: usize, col: usize) -> usize {
-        let directions: [(isize, isize); 8] = [
-            (-1, -1),
-            (-1, 0),
-            (-1, 1),
-            (0, -1),
-            (0, 1),
-            (1, -1),
-            (1, 0),
-            (1, 1),
-        ];
-        directions
+        DIRECTIONS
             .into_iter()
             .filter_map(|(r, c)| {
                 let (nr, nc) = (row.wrapping_add_signed(r), col.wrapping_add_signed(c));
