@@ -52,6 +52,7 @@ impl Diagram {
         }
         to_remove.len()
     }
+    // A much elegant solution was to use map and filter map. This, however, returns early.
     fn has_neighbors_less_than(&self, row: usize, col: usize, limit: usize) -> bool {
         let mut count = 0;
         for (dr, dc) in DIRECTIONS {
