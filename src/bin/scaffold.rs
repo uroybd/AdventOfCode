@@ -6,7 +6,6 @@ use std::{
     io::Write,
     process,
 };
-use AOC::solutions::year2015::day01;
 
 const MODULE_TEMPLATE: &str = r###"// Advent of Code {{ year }} - Day {{ day }}
 
