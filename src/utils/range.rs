@@ -6,9 +6,15 @@ pub struct Range<T: Num + Copy + PartialOrd + Ord + Bounded>(T, T);
 
 impl<T: Num + Copy + PartialOrd + Ord + Bounded> Range<T> {
     pub fn new(start: T, end: T) -> Self {
-        let start = start.min(end);
-        let end = start.max(end);
         Range(start, end)
+    }
+
+    pub fn min_stop(&self) -> T {
+        self.0.min(self.1)
+    }
+
+    pub fn max_stop(&self) -> T {
+        self.0.max(self.1)
     }
 
     pub fn from_string(s: &str, delimiter: char) -> anyhow::Result<Self>
@@ -32,26 +38,34 @@ impl<T: Num + Copy + PartialOrd + Ord + Bounded> Range<T> {
     }
 
     pub fn contains(&self, value: T) -> bool {
-        value >= self.0 && value <= self.1
+        value >= self.min_stop() && value <= self.max_stop()
     }
 
     pub fn length(&self) -> T {
-        self.1 - self.0
+        self.max_stop() - self.min_stop()
     }
 
     pub fn mergeable_with(&self, other: &Range<T>) -> bool {
-        (self.0 >= other.0 && self.0 <= other.1) || (self.1 >= other.0 && self.1 <= other.1)
+        let min_self = self.min_stop();
+        let max_self = self.max_stop();
+        let min_other = other.min_stop();
+        let max_other = other.max_stop();
+        (min_self >= min_other && min_self <= max_other)
+            || (max_self >= min_other && max_self <= max_other)
     }
 
     pub fn merge(&self, other: &Range<T>) -> anyhow::Result<Range<T>> {
         if !self.mergeable_with(other) {
             return Err(anyhow::anyhow!("Ranges are not mergeable"));
         }
-        Ok(Range::new(self.0.min(other.0), self.1.max(other.1)))
+        Ok(Range::new(
+            self.min_stop().min(other.min_stop()),
+            self.max_stop().max(other.max_stop()),
+        ))
     }
 
     pub fn length_inclusive(&self) -> T {
-        self.1 - self.0 + T::one()
+        self.max_stop() - self.min_stop() + T::one()
     }
 
     pub fn merged_ranges(ranges: &[Range<T>]) -> Vec<Range<T>> {
