@@ -1,3 +1,5 @@
+use std::cmp;
+
 use num::Bounded;
 use num_traits::Num;
 
@@ -15,6 +17,14 @@ impl<T: Num + Copy + PartialOrd + Ord + Bounded> Range<T> {
 
     pub fn max_stop(&self) -> T {
         self.0.max(self.1)
+    }
+
+    pub fn min_max_stop(&self) -> (T, T) {
+        if self.0 <= self.1 {
+            (self.0, self.1)
+        } else {
+            (self.1, self.0)
+        }
     }
 
     pub fn from_string(s: &str, delimiter: char) -> anyhow::Result<Self>
@@ -38,34 +48,31 @@ impl<T: Num + Copy + PartialOrd + Ord + Bounded> Range<T> {
     }
 
     pub fn contains(&self, value: T) -> bool {
-        value >= self.min_stop() && value <= self.max_stop()
+        let (min, max) = self.min_max_stop();
+        value >= min && value <= max
     }
 
     pub fn length(&self) -> T {
-        self.max_stop() - self.min_stop()
+        let (min, max) = self.min_max_stop();
+        max - min
     }
 
     pub fn mergeable_with(&self, other: &Range<T>) -> bool {
-        let min_self = self.min_stop();
-        let max_self = self.max_stop();
-        let min_other = other.min_stop();
-        let max_other = other.max_stop();
+        let (min_self, max_self) = self.min_max_stop();
+        let (min_other, max_other) = other.min_max_stop();
         (min_self >= min_other && min_self <= max_other)
             || (max_self >= min_other && max_self <= max_other)
     }
 
     pub fn merge(&self, other: &Range<T>) -> anyhow::Result<Range<T>> {
-        if !self.mergeable_with(other) {
+        let (min_self, max_self) = self.min_max_stop();
+        let (min_other, max_other) = other.min_max_stop();
+        if !((min_self >= min_other && min_self <= max_other)
+            || (max_self >= min_other && max_self <= max_other))
+        {
             return Err(anyhow::anyhow!("Ranges are not mergeable"));
         }
-        Ok(Range::new(
-            self.min_stop().min(other.min_stop()),
-            self.max_stop().max(other.max_stop()),
-        ))
-    }
-
-    pub fn length_inclusive(&self) -> T {
-        self.max_stop() - self.min_stop() + T::one()
+        Ok(Range::new(min_self.min(min_other), max_self.max(max_other)))
     }
 
     pub fn merged_ranges(ranges: &[Range<T>]) -> Vec<Range<T>> {

@@ -39,7 +39,7 @@ pub fn solution_2025_05_01(file_path: String) -> anyhow::Result<usize> {
 pub fn solution_2025_05_02(file_path: String) -> anyhow::Result<usize> {
     let (ranges, _) = parse(&std::fs::read_to_string(file_path)?);
     let compact_range = Range::compact(ranges);
-    Ok(compact_range.iter().map(|r| r.length_inclusive()).sum())
+    Ok(compact_range.iter().map(|r| r.length() + 1).sum())
 }
 
 #[cfg(test)]
