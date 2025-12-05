@@ -1,5 +1,3 @@
-use std::cmp;
-
 use num::Bounded;
 use num_traits::Num;
 
@@ -57,7 +55,7 @@ impl<T: Num + Copy + PartialOrd + Ord + Bounded> Range<T> {
         max - min
     }
 
-    pub fn mergeable_with(&self, other: &Range<T>) -> bool {
+    pub fn overlaps_with(&self, other: &Range<T>) -> bool {
         let (min_self, max_self) = self.min_max_stop();
         let (min_other, max_other) = other.min_max_stop();
         (min_self >= min_other && min_self <= max_other)
