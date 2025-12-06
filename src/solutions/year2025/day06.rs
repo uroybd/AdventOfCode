@@ -9,36 +9,30 @@ struct Group {
 }
 
 impl Group {
-    fn get_numbers(&self, vertical: bool) -> Vec<usize> {
-        if !vertical {
-            return self
-                .numbers
-                .iter()
-                .map(|n| n.trim().parse::<usize>().unwrap())
-                .collect();
+    fn get_numbers(&self, vertical: bool) -> impl Iterator<Item = usize> {
+        let mut numbers = self.numbers.clone();
+        if vertical {
+            // Sort by descending order by length.
+            numbers.sort_by_key(|a| Reverse(a.len()));
+            let max_len = numbers[0].len();
+            let mut new_numbers = vec!["".to_string(); max_len];
+            for n in self.numbers.iter() {
+                for (i, c) in n.chars().rev().enumerate() {
+                    new_numbers[i] = format!("{}{}", new_numbers[i], c).to_string();
+                }
+            }
+            numbers = new_numbers;
         }
 
-        let mut numbers = self.numbers.clone();
-        // Sort by descending order by length.
-        numbers.sort_by_key(|a| Reverse(a.len()));
-        let max_len = numbers[0].len();
-        let mut new_numbers = vec!["".to_string(); max_len];
-        for n in self.numbers.iter() {
-            for (i, c) in n.chars().rev().enumerate() {
-                new_numbers[i] = format!("{}{}", new_numbers[i], c).trim().to_string();
-            }
-        }
-        println!("Before: {:?}, After: {:?}", self.numbers, new_numbers);
-        new_numbers
-            .iter()
-            .map(|n| n.parse::<usize>().unwrap())
-            .collect()
+        numbers
+            .into_iter()
+            .map(|n| n.trim().parse::<usize>().unwrap())
     }
     fn evaluate(&self, vertical: bool) -> Option<usize> {
         let numbers = self.get_numbers(vertical);
         match self.op.as_str() {
-            "+" => Some(numbers.iter().sum()),
-            "*" => Some(numbers.iter().product()),
+            "+" => Some(numbers.sum()),
+            "*" => Some(numbers.product()),
             _ => None,
         }
     }
@@ -49,7 +43,9 @@ fn parse_input(inp: &str) -> anyhow::Result<Vec<Group>> {
     let op_line = lines.pop().unwrap();
     let mut groups: Vec<Group> = Vec::new();
     // "*   +   *   +  "
-    // Numbers are being aligned by operators. For every operator the digit range is from that to one whitespace before the next.
+    // Numbers are being aligned by operators.
+    // For every operator, the digit range is from that
+    // to one whitespace before the next.
     let mut ranges = vec![];
     let op_line_chars = op_line.chars();
     for (i, c) in op_line_chars.enumerate() {
@@ -61,7 +57,6 @@ fn parse_input(inp: &str) -> anyhow::Result<Vec<Group>> {
             });
         }
     }
-    println!("Ranges: {:?}", ranges);
     for line in lines.iter() {
         for i in 0..ranges.len() {
             let start = ranges[i];
@@ -74,7 +69,6 @@ fn parse_input(inp: &str) -> anyhow::Result<Vec<Group>> {
             groups[i].numbers.push(number_str);
         }
     }
-    println!("Parsed groups: {:?}", groups);
     Ok(groups)
 }
 
