@@ -256,17 +256,15 @@ mod tests {
     #[ignore]
     fn output_2025_08_01() {
         let file_path: String = String::from("inputs/2025/day08.txt");
-        let result = solution_2025_08_01(file_path, 1000);
-        dbg!(result.unwrap());
-        assert_eq!(1, 1);
+        let result = solution_2025_08_01(file_path, 1000).unwrap();
+        assert_eq!(result, 80446);
     }
 
     #[test]
     #[ignore]
     fn output_2025_08_02() {
         let file_path: String = String::from("inputs/2025/day08.txt");
-        let result = solution_2025_08_02(file_path);
-        dbg!(result.unwrap());
-        assert_eq!(1, 1);
+        let result = solution_2025_08_02(file_path).unwrap();
+        assert_eq!(1, 51294528);
     }
 }
