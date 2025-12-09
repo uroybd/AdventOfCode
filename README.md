@@ -14,7 +14,7 @@ The measurements are consistent and useful for comparing different approaches, t
 
 ## Year 2025 - Runtime
 
-*Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
+*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
 
 | Day/Part | Part 1 | Part 2 | Total |
 |:---------|-------:|-------:|------:|
@@ -32,7 +32,7 @@ The measurements are consistent and useful for comparing different approaches, t
 
 ## Year 2024 - Runtime
 
-*Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
+*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
 
 | Day/Part | Part 1 | Part 2 | Total |
 |:---------|-------:|-------:|------:|
@@ -44,7 +44,7 @@ The measurements are consistent and useful for comparing different approaches, t
 
 ## Year 2023 - Runtime
 
-*Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
+*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
 
 | Day/Part | Part 1 | Part 2 | Total |
 |:---------|-------:|-------:|------:|
@@ -78,7 +78,7 @@ The measurements are consistent and useful for comparing different approaches, t
 
 ## Year 2022 - Runtime
 
-*Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
+*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
 
 | Day/Part | Part 1 | Part 2 | Total |
 |:---------|-------:|-------:|------:|
@@ -103,7 +103,7 @@ The measurements are consistent and useful for comparing different approaches, t
 
 ## Year 2021 - Runtime
 
-*Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
+*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
 
 | Day/Part | Part 1 | Part 2 | Total |
 |:---------|-------:|-------:|------:|
@@ -115,7 +115,7 @@ The measurements are consistent and useful for comparing different approaches, t
 
 ## Year 2015 - Runtime
 
-*Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
+*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
 
 | Day/Part | Part 1 | Part 2 | Total |
 |:---------|-------:|-------:|------:|
