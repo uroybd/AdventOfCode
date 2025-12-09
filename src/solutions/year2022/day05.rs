@@ -25,12 +25,12 @@ fn execute_instructions_by_new_crane(stacks: &mut [Vec<char>], instructions: &[I
             .drain(0..ins.amount)
             .as_slice()
             .to_owned();
-        stacks[ins.to - 1].splice(0..0, v.into_iter());
+        stacks[ins.to - 1].splice(0..0, v);
     });
 }
 
 fn get_top(stacks: &[Vec<char>]) -> String {
-    return stacks.iter().map(|s| s.first().unwrap()).collect();
+    stacks.iter().map(|s| s.first().unwrap()).collect()
 }
 
 fn parse_input(inp: &str) -> (Vec<Vec<char>>, Vec<Instruction>) {

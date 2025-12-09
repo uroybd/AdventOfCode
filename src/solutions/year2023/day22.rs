@@ -119,11 +119,11 @@ impl Wall {
                 if brick_i.max_z() + 1 == brick_j.min_z() && brick_i.xy_overlaps(brick_j) {
                     self.supports
                         .entry(i)
-                        .or_insert_with(HashSet::new)
+                        .or_default()
                         .insert(j);
                     self.supported_by
                         .entry(j)
-                        .or_insert_with(HashSet::new)
+                        .or_default()
                         .insert(i);
                 }
             }

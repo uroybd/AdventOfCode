@@ -52,7 +52,7 @@ impl Monkey {
             .next()
             .unwrap()
             .split(':')
-            .last()
+            .next_back()
             .unwrap()
             .split(", ")
             .map(|v| v.trim())
@@ -99,7 +99,7 @@ impl Monkey {
             .map(|item| {
                 let new_worry_level = stress_manager.operate(self.operation.operate(item));
                 self.inspected += 1;
-                if new_worry_level % self.devisable_by == 0 {
+                if new_worry_level.is_multiple_of(self.devisable_by) {
                     (self.throw_to_if_true, new_worry_level)
                 } else {
                     (self.throw_to_if_false, new_worry_level)

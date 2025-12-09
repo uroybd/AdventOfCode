@@ -16,7 +16,7 @@ impl FromStr for Valve {
         let mut parts = s.split("; ");
         let f_parts: Vec<&str> = parts.next().unwrap().split_whitespace().collect();
         let name = f_parts[1].to_string();
-        let flow_rate = f_parts[4].split('=').last().unwrap().parse().unwrap();
+        let flow_rate = f_parts[4].split('=').next_back().unwrap().parse().unwrap();
         let l_parts: Vec<&str> = parts.next().unwrap().split_whitespace().collect();
         let leads_to = l_parts[4..]
             .iter()

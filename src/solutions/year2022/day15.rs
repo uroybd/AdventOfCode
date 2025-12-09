@@ -41,7 +41,7 @@ fn manhattan_distance(coords1: Coordinates, coords2: Coordinates) -> isize {
 }
 
 pub fn parse_value(inp: &str) -> isize {
-    inp.split('=').last().unwrap().parse().unwrap()
+    inp.split('=').next_back().unwrap().parse().unwrap()
 }
 
 pub fn parse_coordinates(inp: &str) -> Coordinates {

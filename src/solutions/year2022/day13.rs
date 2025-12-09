@@ -89,7 +89,7 @@ impl From<&Vec<String>> for Packet {
                 "," | "]" => {}
                 number => {
                     if let Self::List(list) = &mut packet {
-                        list.push(Self::Value(number.parse::<usize>().unwrap() as usize));
+                        list.push(Self::Value(number.parse::<usize>().unwrap()));
                     }
                 }
             }

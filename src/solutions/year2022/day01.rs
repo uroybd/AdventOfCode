@@ -18,7 +18,7 @@ fn get_calorie_counts(input: String) -> Vec<usize> {
 }
 
 fn get_top_n(calories: &[usize], count: usize) -> usize {
-    return calories.iter().take(count).sum();
+    calories.iter().take(count).sum()
 }
 
 pub fn solution_2022_01_01(file_path: String) -> Option<usize> {
