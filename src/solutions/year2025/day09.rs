@@ -12,30 +12,30 @@ impl Coordinate {
         Self(parts[0].parse().unwrap(), parts[1].parse().unwrap())
     }
 
-    const fn area(&self, other: &Self) -> usize {
-        let width = self.0.abs_diff(other.0) + 1;
-        let height = self.1.abs_diff(other.1) + 1;
-        width * height
-    }
-
-    fn get_area_and_corners(&self, other: &Self) -> (usize, [Coordinate; 4]) {
-        let area = self.area(other);
-        let x1 = self.0.min(other.0);
-        let x2 = self.0.max(other.0);
-        let y1 = self.1.min(other.1);
-        let y2 = self.1.max(other.1);
-        let corners = [
-            Coordinate(x1, y1),
-            Coordinate(x1, y2),
-            Coordinate(x2, y1),
-            Coordinate(x2, y2),
-        ];
-        (area, corners)
-    }
-
     const fn as_isize(self) -> (isize, isize) {
         (self.0 as isize, self.1 as isize)
     }
+}
+
+fn area(c1: &Coordinate, c2: &Coordinate) -> usize {
+    let width = c1.0.abs_diff(c2.0) + 1;
+    let height = c1.1.abs_diff(c2.1) + 1;
+    width * height
+}
+
+fn get_area_and_corners(c1: &Coordinate, c2: &Coordinate) -> (usize, [Coordinate; 4]) {
+    let area = area(c1, c2);
+    let x1 = c1.0.min(c2.0);
+    let x2 = c1.0.max(c2.0);
+    let y1 = c1.1.min(c2.1);
+    let y2 = c1.1.max(c2.1);
+    let corners = [
+        Coordinate(x1, y1),
+        Coordinate(x1, y2),
+        Coordinate(x2, y1),
+        Coordinate(x2, y2),
+    ];
+    (area, corners)
 }
 
 #[inline]
@@ -45,7 +45,7 @@ const fn cross_product(origin: Coordinate, p1: Coordinate, p2: Coordinate) -> is
     let (ox, oy) = origin.as_isize();
     let (x1, y1) = p1.as_isize();
     let (x2, y2) = p2.as_isize();
-    
+
     (x1 - ox) * (y2 - oy) - (y1 - oy) * (x2 - ox)
 }
 
@@ -89,7 +89,6 @@ const fn do_lines_intersect(
     let o1 = get_orient(a1, a2, b1);
     let o2 = get_orient(a1, a2, b2);
 
-    // Early return: if o1 and o2 have the same sign, lines can't intersect
     if o1 * o2 >= 0 {
         return false;
     }
@@ -116,7 +115,7 @@ impl Floor {
         let length = self.grid.len();
         for i in 0..length {
             for j in i + 1..length {
-                let area = self.grid[i].area(&self.grid[j]);
+                let area = area(&self.grid[i], &self.grid[j]);
                 if area > max_area {
                     max_area = area;
                 }
@@ -177,28 +176,25 @@ impl Floor {
 
     fn get_largest_area_in_hull(&self) -> usize {
         let length = self.grid.len();
-
-        // Build list of all possible rectangles with their areas
         let mut rectangles: Vec<(usize, [Coordinate; 4])> = (0..length - 1)
             .flat_map(|i| {
-                (i + 1..length).map(move |j| {
-                    let a = self.grid[i];
-                    let b = self.grid[j];
-                    a.get_area_and_corners(&b)
-                })
+                (i + 1..length).map(move |j| get_area_and_corners(&self.grid[i], &self.grid[j]))
             })
             .collect();
 
-        // Sort by area descending - check largest first for early exit
-        rectangles.sort_unstable_by(|a, b| b.0.cmp(&a.0));
+        rectangles.sort_by(|a, b| b.0.cmp(&a.0));
 
         // Find the first (largest) valid rectangle
-        for (area, corners) in rectangles {
-            if self.is_rect_inside(&corners) {
-                return area;
-            }
-        }
-        0
+        rectangles
+            .iter()
+            .find_map(|(area, corners)| {
+                if self.is_rect_inside(corners) {
+                    Some(*area)
+                } else {
+                    None
+                }
+            })
+            .unwrap_or_default()
     }
 }
 
