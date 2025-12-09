@@ -2,6 +2,16 @@
 
 This repository contains my solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
+## Benchmarking Methodology
+
+All benchmarks include the full end-to-end execution time, measured by running the test harness 100 times and taking the median. This includes:
+- Test process startup overhead (~1ms)
+- File I/O to read input
+- Solution computation
+- Test framework teardown
+
+The measurements are consistent and useful for comparing different approaches, though absolute times are higher than pure computation benchmarks would show.
+
 ## Year 2025 - Runtime
 
 *Benchmarks run on: Apple M1 Pro (Release mode, median of 100 runs)*
@@ -100,27 +110,8 @@ This repository contains my solutions to the [Advent of Code](https://adventofco
 | **Day 01** | 1.29ms | 1.39ms | 2.68ms |
 | **Day 02** | 1.33ms | 1.26ms | 2.59ms |
 | **Day 03** | 1.31ms | 1.28ms | 2.59ms |
-| **Day 04** | 1.30ms | 1.28ms | 2.59ms |
-| **Day 05** | 1.30ms | 1.28ms | 2.58ms |
-| **Day 06** | 1.35ms | 1.28ms | 2.63ms |
-| **Day 07** | 1.28ms | 1.27ms | 2.54ms |
-| **Day 08** | 1.26ms | 1.26ms | 2.53ms |
-| **Day 09** | 1.31ms | 1.29ms | 2.60ms |
-| **Day 10** | 1.27ms | 1.28ms | 2.55ms |
-| **Day 11** | 1.29ms | 1.30ms | 2.59ms |
-| **Day 12** | 1.27ms | 1.27ms | 2.54ms |
-| **Day 13** | 1.30ms | 1.27ms | 2.58ms |
-| **Day 14** | 1.31ms | 1.32ms | 2.63ms |
-| **Day 15** | 1.28ms | 1.27ms | 2.55ms |
-| **Day 18** | 1.27ms | 1.26ms | 2.54ms |
-| **Day 19** | 1.29ms | 1.28ms | 2.56ms |
-| **Day 20** | 1.33ms | 1.28ms | 2.60ms |
-| **Day 22** | 1.32ms | 1.26ms | 2.59ms |
-| **Day 23** | 1.30ms | 1.26ms | 2.56ms |
-| **Day 24** | 1.29ms | 1.31ms | 2.60ms |
-| **Day 25** | 1.30ms | 1.27ms | 2.57ms |
 
-**Total runtime: 56.79ms**
+**Total runtime: 7.86ms**
 
 ## Year 2015 - Runtime
 
