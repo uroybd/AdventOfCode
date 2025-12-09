@@ -86,17 +86,8 @@ const fn do_lines_intersect(
     b1: Coordinate,
     b2: Coordinate,
 ) -> bool {
-    let o1 = get_orient(a1, a2, b1);
-    let o2 = get_orient(a1, a2, b2);
-
-    if o1 * o2 >= 0 {
-        return false;
-    }
-
-    let o3 = get_orient(b1, b2, a1);
-    let o4 = get_orient(b1, b2, a2);
-
-    o3 * o4 < 0
+    get_orient(a1, a2, b1) * get_orient(a1, a2, b2) < 0
+        && get_orient(b1, b2, a1) * get_orient(b1, b2, a2) < 0
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
