@@ -34,7 +34,6 @@ impl TachyonManifold {
         tachyons.insert(self.start);
         let height = self.schema.len();
         while !tachyons.is_empty() {
-            println!("Tachyons at positions: {:?}", tachyons);
             let mut new_tachyons = HashSet::new();
             for (x, y) in tachyons.iter() {
                 if y + 1 >= height {
@@ -52,7 +51,6 @@ impl TachyonManifold {
                     }
                 }
             }
-            println!("New tachyons at positions: {:?}", new_tachyons);
             tachyons = new_tachyons;
         }
         split_count

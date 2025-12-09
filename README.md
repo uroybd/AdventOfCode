@@ -2,129 +2,142 @@
 
 This repository contains my solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
-## Benchmarking Methodology
+## Status
 
-All benchmarks include the full end-to-end execution time, measured by running the test harness 100 times and taking the median. This includes:
-- Test process startup overhead (~1ms)
-- File I/O to read input
-- Solution computation
-- Test framework teardown
+### 2021
+- ✅ Days 1-25 converted from legacy repository
+- 📝 Note: Day 24 uses stub implementations (requires manual analysis of ALU program)
+- 🔧 Day 10 already existed and was kept as-is
 
-The measurements are consistent and useful for comparing different approaches, though absolute times are higher than pure computation benchmarks would show.
+### 2025
+- Days 1-9 completed
 
-## Year 2025 - Runtime
+### 2015
+- Days 1-5 completed
 
-*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
+## Benchmarks
 
-| Day/Part | Part 1 | Part 2 | Total |
-|:---------|-------:|-------:|------:|
-| **Day 01** | 1.26ms | 1.27ms | 2.53ms |
-| **Day 02** | 1.29ms | 1.27ms | 2.56ms |
-| **Day 03** | 1.27ms | 1.26ms | 2.54ms |
-| **Day 04** | 1.27ms | 1.27ms | 2.54ms |
-| **Day 05** | 1.28ms | 1.26ms | 2.54ms |
-| **Day 06** | 1.28ms | 1.25ms | 2.53ms |
-| **Day 07** | 1.39ms | 1.29ms | 2.68ms |
-| **Day 08** | 1.29ms | 1.27ms | 2.55ms |
-| **Day 09** | 1.28ms | 1.26ms | 2.54ms |
+Run on: Apple M1 Max
 
-**Total runtime: 23.01ms**
+### 2025
 
-## Year 2024 - Runtime
+| Day | Part 1 | Part 2 | Total |
+|-----|--------|--------|-------|
+| 1 | 84.20 µs | 87.88 µs | 172.09 µs |
+| 2 | 39.52 ms | 913.77 ms | 953.29 ms |
+| 3 | 25.24 µs | 42.38 µs | 67.62 µs |
+| 4 | 134.07 µs | 5.99 ms | 6.12 ms |
+| 5 | 105.87 µs | 49.56 µs | 155.43 µs |
+| 6 | 218.26 µs | 648.20 µs | 866.46 µs |
+| 7 | 1.78 ms | 60.26 µs | 1.84 ms |
+| 8 | 60.15 ms | 115.92 ms | 176.07 ms |
+| 9 | 92.28 µs | 82.98 ms | 83.08 ms |
 
-*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
+**Total runtime: 1.22 s**
 
-| Day/Part | Part 1 | Part 2 | Total |
-|:---------|-------:|-------:|------:|
-| **Day 01** | 1.30ms | 1.36ms | 2.66ms |
-| **Day 02** | 1.28ms | 1.30ms | 2.58ms |
-| **Day 03** | 1.30ms | 1.33ms | 2.63ms |
+### 2024
 
-**Total runtime: 7.87ms**
+| Day | Part 1 | Part 2 | Total |
+|-----|--------|--------|-------|
+| 1 | 61.45 µs | 94.17 µs | 155.62 µs |
+| 2 | 100.83 µs | 201.67 µs | 302.50 µs |
+| 3 | 147.64 µs | 200.52 µs | 348.16 µs |
 
-## Year 2023 - Runtime
+**Total runtime: 806.27 µs**
 
-*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
+### 2023
 
-| Day/Part | Part 1 | Part 2 | Total |
-|:---------|-------:|-------:|------:|
-| **Day 01** | 1.28ms | 1.27ms | 2.56ms |
-| **Day 02** | 1.26ms | 1.28ms | 2.54ms |
-| **Day 03** | 1.26ms | 1.29ms | 2.55ms |
-| **Day 04** | 1.41ms | 1.36ms | 2.77ms |
-| **Day 05** | 1.27ms | 1.30ms | 2.57ms |
-| **Day 06** | 1.28ms | 1.38ms | 2.66ms |
-| **Day 07** | 1.30ms | 1.26ms | 2.56ms |
-| **Day 08** | 1.28ms | 1.28ms | 2.55ms |
-| **Day 09** | 1.28ms | 1.26ms | 2.54ms |
-| **Day 10** | 1.25ms | 1.27ms | 2.53ms |
-| **Day 11** | 1.27ms | 1.26ms | 2.53ms |
-| **Day 12** | 1.27ms | 1.26ms | 2.54ms |
-| **Day 13** | 1.31ms | 1.27ms | 2.58ms |
-| **Day 14** | 1.29ms | 1.27ms | 2.56ms |
-| **Day 15** | 1.35ms | 1.26ms | 2.61ms |
-| **Day 16** | 1.27ms | 1.30ms | 2.56ms |
-| **Day 17** | 1.28ms | 1.27ms | 2.55ms |
-| **Day 18** | 1.27ms | 1.28ms | 2.55ms |
-| **Day 19** | 1.28ms | 1.27ms | 2.55ms |
-| **Day 20** | 1.26ms | 1.27ms | 2.53ms |
-| **Day 21** | 1.28ms | 1.27ms | 2.55ms |
-| **Day 22** | 1.26ms | 1.27ms | 2.53ms |
-| **Day 23** | 1.27ms | 1.30ms | 2.57ms |
-| **Day 24** | 1.27ms | 1.30ms | 2.56ms |
-| **Day 25** | 1.28ms | 1.28ms | 2.56ms |
+| Day | Part 1 | Part 2 | Total |
+|-----|--------|--------|-------|
+| 1 | 26.66 µs | 287.36 µs | 314.02 µs |
+| 2 | 27.97 µs | 28.04 µs | 56.01 µs |
+| 3 | 417.18 µs | 246.99 µs | 664.17 µs |
+| 4 | 93.78 µs | 94.61 µs | 188.39 µs |
+| 5 | 20.11 µs | 27.06 µs | 47.17 µs |
+| 6 | 7.51 µs | 8.02 µs | 15.53 µs |
+| 7 | 185.27 µs | 185.75 µs | 371.01 µs |
+| 8 | 449.70 µs | 865.22 µs | 1.31 ms |
+| 9 | 140.55 µs | 139.77 µs | 280.32 µs |
+| 10 | 3.65 ms | 6.51 ms | 10.16 ms |
+| 12 | 8.42 ms | 340.60 ms | 349.02 ms |
+| 13 | 257.53 µs | 241.39 µs | 498.92 µs |
+| 14 | 33.01 µs | 11.04 ms | 11.08 ms |
+| 15 | 34.01 µs | 254.38 µs | 288.39 µs |
+| 16 | 1.11 ms | 50.99 ms | 52.09 ms |
+| 17 | 58.93 ms | 147.49 ms | 206.42 ms |
+| 18 | 29.65 µs | 29.77 µs | 59.42 µs |
+| 19 | 220.75 µs | 2.46 ms | 2.68 ms |
+| 20 | 4.66 ms | 19.76 ms | 24.42 ms |
+| 21 | 7.43 ms | 1.25 s | 1.26 s |
+| 22 | 3.73 ms | 80.21 ms | 83.94 ms |
+| 23 | 274.75 ms | 2.05 s | 2.33 s |
+| 24 | 225.28 µs | 63.44 µs | 288.72 µs |
+| 25 | 251.51 ms | - | 251.51 ms |
 
-**Total runtime: 64.15ms**
+**Total runtime: 4.59 s**
 
-## Year 2022 - Runtime
+### 2022
 
-*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
+| Day | Part 1 | Part 2 | Total |
+|-----|--------|--------|-------|
+| 1 | 31.98 µs | 31.76 µs | 63.74 µs |
+| 2 | 55.44 µs | 55.83 µs | 111.27 µs |
+| 3 | 103.98 µs | 149.91 µs | 253.89 µs |
+| 4 | 52.34 µs | 45.83 µs | 98.17 µs |
+| 5 | 67.52 µs | 68.16 µs | 135.68 µs |
+| 6 | 13.34 µs | 23.49 µs | 36.84 µs |
+| 7 | 108.80 µs | 110.09 µs | 218.89 µs |
+| 8 | 184.47 µs | 209.12 µs | 393.59 µs |
+| 9 | 309.58 µs | 363.58 µs | 673.16 µs |
+| 10 | 14.06 µs | 15.69 µs | 29.75 µs |
+| 11 | 18.00 µs | 4.72 ms | 4.74 ms |
+| 12 | 1.70 ms | 268.04 ms | 269.74 ms |
+| 13 | 1.96 ms | 2.09 ms | 4.05 ms |
+| 14 | 2.74 ms | 48.93 ms | 51.68 ms |
+| 15 | 64.07 ms | 47.22 ms | 111.29 ms |
+| 16 | 67.53 ms | 659.03 ms | 726.56 ms |
 
-| Day/Part | Part 1 | Part 2 | Total |
-|:---------|-------:|-------:|------:|
-| **Day 01** | 1.29ms | 1.27ms | 2.55ms |
-| **Day 02** | 1.26ms | 1.27ms | 2.53ms |
-| **Day 03** | 1.29ms | 1.27ms | 2.56ms |
-| **Day 04** | 1.36ms | 1.27ms | 2.63ms |
-| **Day 05** | 1.27ms | 1.27ms | 2.54ms |
-| **Day 06** | 1.28ms | 1.27ms | 2.55ms |
-| **Day 07** | 1.29ms | 1.28ms | 2.58ms |
-| **Day 08** | 1.28ms | 1.27ms | 2.55ms |
-| **Day 09** | 1.27ms | 1.27ms | 2.55ms |
-| **Day 10** | 1.30ms | 1.27ms | 2.57ms |
-| **Day 11** | 1.27ms | 1.27ms | 2.54ms |
-| **Day 12** | 1.27ms | 1.26ms | 2.53ms |
-| **Day 13** | 1.28ms | 1.28ms | 2.55ms |
-| **Day 14** | 1.27ms | 1.26ms | 2.54ms |
-| **Day 15** | 1.26ms | 1.25ms | 2.51ms |
-| **Day 16** | 1.27ms | 1.27ms | 2.55ms |
+**Total runtime: 1.17 s**
 
-**Total runtime: 40.82ms**
+### 2021
 
-## Year 2021 - Runtime
+| Day | Part 1 | Part 2 | Total |
+|-----|--------|--------|-------|
+| 1 | 26.93 µs | 26.12 µs | 53.05 µs |
+| 2 | 44.37 µs | 45.71 µs | 90.08 µs |
+| 3 | 42.83 µs | 119.70 µs | 162.53 µs |
+| 4 | 144.69 µs | 392.78 µs | 537.48 µs |
+| 5 | 7.55 ms | 13.13 ms | 20.68 ms |
+| 6 | 9.76 µs | 9.87 µs | 19.63 µs |
+| 7 | 22.04 µs | 20.73 µs | 42.77 µs |
+| 8 | 104.43 µs | 633.36 µs | 737.79 µs |
+| 9 | 355.40 µs | 2.95 ms | 3.31 ms |
+| 10 | 45.44 µs | 44.92 µs | 90.36 µs |
+| 11 | 156.03 µs | 351.10 µs | 507.13 µs |
+| 12 | 10.16 ms | 382.01 ms | 392.18 ms |
+| 13 | 492.35 µs | 777.74 µs | 1.27 ms |
+| 14 | 257.81 µs | 1.40 ms | 1.66 ms |
+| 15 | 1.39 ms | 37.72 ms | 39.11 ms |
+| 18 | 1.20 ms | 20.77 ms | 21.97 ms |
+| 19 | 254.30 ms | 254.76 ms | 509.06 ms |
+| 20 | 325.11 µs | 16.57 ms | 16.89 ms |
+| 22 | 115.36 ms | 6.18 ms | 121.54 ms |
+| 23 | 6.56 ms | 17.28 ms | 23.84 ms |
+| 24 | 15.56 ns | 15.45 ns | 31.01 ns |
+| 25 | 85.56 ms | - | 85.56 ms |
 
-*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
+**Total runtime: 1.24 s**
 
-| Day/Part | Part 1 | Part 2 | Total |
-|:---------|-------:|-------:|------:|
-| **Day 01** | 1.29ms | 1.39ms | 2.68ms |
-| **Day 02** | 1.33ms | 1.26ms | 2.59ms |
-| **Day 03** | 1.31ms | 1.28ms | 2.59ms |
+### 2015
 
-**Total runtime: 7.86ms**
+| Day | Part 1 | Part 2 | Total |
+|-----|--------|--------|-------|
+| 1 | 12.36 µs | 8.48 µs | 20.84 µs |
+| 2 | 60.91 µs | 60.40 µs | 121.31 µs |
+| 3 | 486.45 µs | 520.17 µs | 1.01 ms |
+| 4 | 87.32 ms | 3.05 s | 3.14 s |
+| 5 | 103.05 µs | 215.56 µs | 318.61 µs |
+| 6 | 839.10 ms | 1.15 s | 1.99 s |
 
-## Year 2015 - Runtime
-
-*Benchmarks run on: Apple M4 (Release mode, median of 100 runs)*
-
-| Day/Part | Part 1 | Part 2 | Total |
-|:---------|-------:|-------:|------:|
-| **Day 01** | 1.27ms | 1.29ms | 2.57ms |
-| **Day 02** | 1.26ms | 1.29ms | 2.55ms |
-| **Day 03** | 1.27ms | 1.30ms | 2.57ms |
-| **Day 04** | 1.27ms | 1.28ms | 2.54ms |
-| **Day 05** | 1.28ms | 1.28ms | 2.55ms |
-| **Day 06** | 1.28ms | 1.28ms | 2.56ms |
-
-**Total runtime: 15.34ms**
+**Total runtime: 5.14 s**
 
