@@ -111,17 +111,11 @@ impl Floor {
     }
 
     fn get_largest_area(&self) -> usize {
-        let mut max_area = 0;
         let length = self.grid.len();
-        for i in 0..length {
-            for j in i + 1..length {
-                let area = area(&self.grid[i], &self.grid[j]);
-                if area > max_area {
-                    max_area = area;
-                }
-            }
-        }
-        max_area
+        (0..length - 1)
+            .flat_map(|i| (i + 1..length).map(move |j| area(&self.grid[i], &self.grid[j])))
+            .max()
+            .unwrap_or_default()
     }
 
     fn is_point_inside(&self, p: Coordinate) -> bool {
