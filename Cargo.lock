@@ -18,6 +18,7 @@ dependencies = [
  "md5",
  "nalgebra",
  "num",
+ "num-rational",
  "num-traits",
  "rayon",
  "regex",
