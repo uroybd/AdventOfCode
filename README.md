@@ -2,19 +2,6 @@
 
 This repository contains my solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
-## Status
-
-### 2021
-- ✅ Days 1-25 converted from legacy repository
-- 📝 Note: Day 24 uses stub implementations (requires manual analysis of ALU program)
-- 🔧 Day 10 already existed and was kept as-is
-
-### 2025
-- Days 1-9 completed
-
-### 2015
-- Days 1-5 completed
-
 ## Benchmarks
 
 Run on: Apple M4

@@ -289,7 +289,7 @@ pub fn solution_2025_10_02(file_path: String) -> anyhow::Result<usize> {
     let machines = std::fs::read_to_string(file_path)?
         .lines()
         .map(Instruction::from_str)
-        .map(Machine::new)
+        .map(Machinee:new)
         .collect::<Vec<Machine>>();
     Ok(machines
         .into_iter()
